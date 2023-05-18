@@ -1,3 +1,13 @@
+# pg_migrate roll_forward
+
+The roll_forward branch modifies the bash script to behave like a simplified version [graphile/migrate](https://github.com/graphile/migrate).
+
+* there are no down migrations, only up.
+* it will re-run a file any time the contents change.  For dev your migrations must be idempotent.  See [idempotency note](https://github.com/graphile/migrate#idempotency) from graphile/migrate.
+* it runs the files in lexographical order.  It's okay if there are two files with `0003` prefix as long as there is no logical dependency between them.
+* there is a dedicated folder for `functions`.  They behave the same as migrations folder, the separation is just for organization reasons.
+
+---
 # pg_migrate
 
 Schema migration management script for PostgreSQL. [`pg_migrate.sh`](pg_migrate.sh) is dead simple (about 100 LOC) and written in bash so it works everywhere and does not require any extra dependencies except for `psql`.
